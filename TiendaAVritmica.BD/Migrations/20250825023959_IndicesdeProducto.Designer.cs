@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TiendaAVritmica.BD.Data;
 
@@ -10,9 +11,11 @@ using TiendaAVritmica.BD.Data;
 namespace TiendaAVritmica.BD.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20250825023959_IndicesdeProducto")]
+    partial class IndicesdeProducto
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,18 +34,13 @@ namespace TiendaAVritmica.BD.Migrations
 
                     b.Property<string>("Descripcion")
                         .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nombre")
                         .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex(new[] { "Nombre" }, "Categoria_UQ")
-                        .IsUnique();
 
                     b.ToTable("Categorias");
                 });
@@ -60,25 +58,20 @@ namespace TiendaAVritmica.BD.Migrations
 
                     b.Property<string>("Descripcion")
                         .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ImagenUrl")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nombre")
                         .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<decimal>("Precio")
-                        .HasMaxLength(15)
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("Stock")
-                        .HasMaxLength(15)
                         .HasColumnType("int");
 
                     b.HasKey("Id");
