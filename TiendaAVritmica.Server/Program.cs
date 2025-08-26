@@ -16,6 +16,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<Context>(op => op.UseSqlServer("name=conn"));  // Local instance MySQL83
 
+builder.Services.AddAutoMapper(typeof(Program));
+
 //-----------------------------------------------------------------------------------------------------------------
 //Construccion de la aplicacion
 var app = builder.Build();

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TiendaAVritmica.BD.Data;
 using TiendaAVritmica.BD.Data.Entity;
@@ -11,10 +12,13 @@ namespace TiendaAVritmica.Server.Controllers
     public class CompraDetallesController : ControllerBase
     {
         private readonly Context context;
+        private readonly IMapper mapper;
 
-        public CompraDetallesController(Context context)
+        public CompraDetallesController(Context context,
+                                        IMapper mapper)
         {
             this.context = context;
+            this.mapper = mapper;
         }
 
         [HttpGet]
@@ -43,11 +47,12 @@ namespace TiendaAVritmica.Server.Controllers
         {
             try
             {
-                CompraDetalle entidad = new CompraDetalle();
-                entidad.Cantidad = entidadDTO.Cantidad;
-                entidad.PrecioCompra = entidadDTO.PrecioCompra;
-                entidad.PrecioVentaActualizado = entidadDTO.PrecioVentaActualizado;
+                //CompraDetalle entidad = new CompraDetalle();
+                //entidad.Cantidad = entidadDTO.Cantidad;
+                //entidad.PrecioCompra = entidadDTO.PrecioCompra;
+                //entidad.PrecioVentaActualizado = entidadDTO.PrecioVentaActualizado;
 
+                CompraDetalle entidad = mapper.Map<CompraDetalle>(entidadDTO);
                 context.CompraDetalles.Add(entidad);
                 await context.SaveChangesAsync();
                 return entidad.Id;

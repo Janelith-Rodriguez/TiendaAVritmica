@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TiendaAVritmica.BD.Data;
 using TiendaAVritmica.BD.Data.Entity;
@@ -11,10 +12,13 @@ namespace TiendaAVritmica.Server.Controllers
     public class ProductosController : ControllerBase
     {
         private readonly Context context;
+        private readonly IMapper mapper;
 
-        public ProductosController(Context context)
+        public ProductosController(Context context,
+                                   IMapper mapper)
         {
             this.context = context;
+            this.mapper = mapper;
         }
 
         // GET: api/Productos
@@ -49,14 +53,15 @@ namespace TiendaAVritmica.Server.Controllers
         {
             try
             {
-                Producto entidad = new Producto();
-                entidad.Nombre= entidadDTO.Nombre;
-                entidad.Descripcion= entidadDTO.Descripcion;
-                entidad.Precio = entidadDTO.Precio;
-                entidad.Stock = entidadDTO.Stock;
-                entidad.ImagenUrl = entidadDTO.ImagenUrl;
-                entidad.CategoriaId = entidadDTO.CategoriaId;
+                //Producto entidad = new Producto();
+                //entidad.Nombre= entidadDTO.Nombre;
+                //entidad.Descripcion= entidadDTO.Descripcion;
+                //entidad.Precio = entidadDTO.Precio;
+                //entidad.Stock = entidadDTO.Stock;
+                //entidad.ImagenUrl = entidadDTO.ImagenUrl;
+                //entidad.CategoriaId = entidadDTO.CategoriaId;
 
+                Producto entidad = mapper.Map<Producto>(entidadDTO);
                 context.Productos.Add(entidad);
                 await context.SaveChangesAsync();
                 return entidad.Id;

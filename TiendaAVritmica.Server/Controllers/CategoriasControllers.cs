@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TiendaAVritmica.BD.Data;
 using TiendaAVritmica.BD.Data.Entity;
@@ -11,10 +12,13 @@ namespace TiendaAVritmica.Server.Controllers
     public class CategoriasControllers : ControllerBase
     {
         private readonly Context context;
+        private readonly IMapper mapper;
 
-        public CategoriasControllers(Context context)
+        public CategoriasControllers(Context context,
+                                     IMapper mapper)
         {
             this.context = context;
+            this.mapper = mapper;
         }
 
         // GET: api/Categorias
@@ -47,10 +51,11 @@ namespace TiendaAVritmica.Server.Controllers
         {
             try
             {
-                Categoria entidad = new Categoria();
-                entidad.Nombre = entidadDTO.Nombre;
-                entidad.Descripcion = entidadDTO.Descripcion;
+                //Categoria entidad = new Categoria();
+                //entidad.Nombre = entidadDTO.Nombre;
+                //entidad.Descripcion = entidadDTO.Descripcion;
 
+                Categoria entidad = mapper.Map<Categoria>(entidadDTO);
                 context.Categorias.Add(entidad);
                 await context.SaveChangesAsync();
                 return entidad.Id;
