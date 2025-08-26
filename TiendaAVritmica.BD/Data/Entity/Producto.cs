@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace TiendaAVritmica.BD.Data.Entity
 {
-    [Index(nameof(CategoriaId), nameof(Nombre), Name = "Producto_UQ", IsUnique = true)] //Indice FK
-    [Index(nameof(Precio), nameof(Descripcion), Name = "Producto_Precio_Descripcion", IsUnique = false)] 
+    [Index(nameof(CategoriaId), nameof(Nombre), Name = "Producto_UQ", IsUnique = true)] // Índice único por Categoría + Nombre
+    [Index(nameof(Precio), Name = "Producto_Precio", IsUnique = false)] // Índice en Precio
 
     public class Producto : EntityBase
     {
@@ -21,20 +21,26 @@ namespace TiendaAVritmica.BD.Data.Entity
         [MaxLength(200, ErrorMessage = "Maximo numero de caracteres{1}.")]
         public string Descripcion { get; set; }
 
-        [Required(ErrorMessage = "El precio del producto es obligatoria")]
-        [MaxLength(15, ErrorMessage = "Maximo numero de caracteres{1}.")]
+        [Required(ErrorMessage = "El precio del producto es obligatorio")]
+        //[Precision(18, 2)] // 18 dígitos, 2 decimales
         public decimal Precio { get; set; }
 
         [Required(ErrorMessage = "El stock del producto es obligatoria")]
-        [MaxLength(15, ErrorMessage = "Maximo numero de caracteres{1}.")]
+        //[MaxLength(15, ErrorMessage = "Maximo numero de caracteres{1}.")]
         public int Stock { get; set; }
 
         [Required(ErrorMessage = "La imagen url del producto es obligatoria")]
-        [MaxLength(10, ErrorMessage = "Maximo numero de caracteres{1}.")]
+        [MaxLength(250, ErrorMessage = "Máximo {1} caracteres.")]
         public string ImagenUrl { get; set; }
 
+        // FK
         [Required(ErrorMessage = "La categoria es obligatoria")]
-        public int CategoriaId { get; set; } // Clave foránea
+        public int CategoriaId { get; set; } 
         public Categoria Categoria { get; set; }
+
+        // Relaciones
+        //public List<Carrito_Producto> Carrito_Productos { get; set; }
+        //public List<Stock_Movimiento> Stock_Movimientos { get; set; }
+        public List<CompraDetalle> CompraDetalles { get; set; }
     }
 }
