@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using TiendaAVritmica.BD.Data;
 using TiendaAVritmica.BD.Data.Entity;
+using TiendaAVritmica.Shared.DTO;
 
 namespace TiendaAVritmica.Server.Controllers
 {
@@ -44,17 +45,25 @@ namespace TiendaAVritmica.Server.Controllers
 
         // POST: api/Productos
         [HttpPost]
-        public async Task<ActionResult<int>> Post(Producto entidad)
+        public async Task<ActionResult<int>> Post(CrearProductoDTO entidadDTO)
         {
             try
             {
+                Producto entidad = new Producto();
+                entidad.Nombre= entidadDTO.Nombre;
+                entidad.Descripcion= entidadDTO.Descripcion;
+                entidad.Precio = entidadDTO.Precio;
+                entidad.Stock = entidadDTO.Stock;
+                entidad.ImagenUrl = entidadDTO.ImagenUrl;
+                entidad.CategoriaId = entidadDTO.CategoriaId;
+
                 context.Productos.Add(entidad);
                 await context.SaveChangesAsync();
                 return entidad.Id;
             }
-            catch (Exception e)
+            catch (Exception err)
             {
-                return BadRequest(e.Message);
+                return BadRequest(err.InnerException.Message);
             }
         }
 

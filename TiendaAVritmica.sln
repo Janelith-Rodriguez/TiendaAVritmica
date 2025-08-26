@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TiendaAVritmica.Server", "T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TiendaAVritmica.BD", "TiendaAVritmica.BD\TiendaAVritmica.BD.csproj", "{F87545A6-7409-4771-AA0B-C681B7D89B5F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TiendaAVritmica.Shared", "TiendaAVritmica.Shared\TiendaAVritmica.Shared.csproj", "{5A140673-AA4C-48C5-89DE-2BB381147E81}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{F87545A6-7409-4771-AA0B-C681B7D89B5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F87545A6-7409-4771-AA0B-C681B7D89B5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F87545A6-7409-4771-AA0B-C681B7D89B5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A140673-AA4C-48C5-89DE-2BB381147E81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A140673-AA4C-48C5-89DE-2BB381147E81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A140673-AA4C-48C5-89DE-2BB381147E81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A140673-AA4C-48C5-89DE-2BB381147E81}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

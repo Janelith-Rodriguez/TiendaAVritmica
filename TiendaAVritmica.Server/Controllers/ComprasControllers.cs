@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using TiendaAVritmica.BD.Data;
 using TiendaAVritmica.BD.Data.Entity;
+using TiendaAVritmica.Shared.DTO;
 
 namespace TiendaAVritmica.Server.Controllers
 {
@@ -36,10 +37,14 @@ namespace TiendaAVritmica.Server.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<int>> Post(Compra entidad)
+        public async Task<ActionResult<int>> Post(CrearCompraDTO entidadDTO)
         {
             try
             {
+                Compra entidad = new Compra();
+                entidad.Fecha = entidadDTO.Fecha;
+                entidad.Descripcion = entidadDTO.Descripcion;
+                
                 context.Compras.Add(entidad);
                 await context.SaveChangesAsync();
                 return entidad.Id;

@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using TiendaAVritmica.BD.Data;
 using TiendaAVritmica.BD.Data.Entity;
+using TiendaAVritmica.Shared.DTO;
 
 namespace TiendaAVritmica.Server.Controllers
 {
@@ -31,10 +32,19 @@ namespace TiendaAVritmica.Server.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<int>> Post(Usuario entidad)
+        public async Task<ActionResult<int>> Post(CrearUsuarioDTO entidadDTO)
         {
             try
             {
+                Usuario entidad = new Usuario();
+                entidad.Nombre = entidadDTO.Nombre;
+                entidad.Apellido = entidadDTO.Apellido;
+                entidad.Email = entidadDTO.Email;
+                entidad.Contrasena = entidadDTO.Contrasena;
+                entidad.Telefono = entidadDTO.Telefono;
+                entidad.Direccion = entidadDTO.Direccion;
+                entidad.TipoUsuario = entidadDTO.TipoUsuario;
+
                 context.Usuarios.Add(entidad);
                 await context.SaveChangesAsync();
                 return entidad.Id;

@@ -30,4 +30,4 @@ namespace TiendaAVritmica.BD.Data.Entity
         [Required(ErrorMessage = "El precio de venta actualizado es obligatorio")]
         public decimal PrecioVentaActualizado { get; set; }
     }
-}
+}   
