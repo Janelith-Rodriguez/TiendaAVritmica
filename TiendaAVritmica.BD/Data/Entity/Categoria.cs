@@ -9,8 +9,6 @@ using System.Threading.Tasks;
 namespace TiendaAVritmica.BD.Data.Entity
 {
     [Index(nameof(Nombre), Name = "Categoria_UQ", IsUnique = true)] // Índice único en Nombre
-
-
     public class Categoria : EntityBase
     {
         [Required(ErrorMessage = "El nombre de la categoria es obligatoria")]

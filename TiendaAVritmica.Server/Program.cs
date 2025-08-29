@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 using TiendaAVritmica.BD.Data;
+using TiendaAVritmica.Server.Repositorio;
 
 //-----------------------------------------------------------------------------------------------------------------
 //Configuracion de los servicios en el constructor de la aplicacion
@@ -17,6 +18,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<Context>(op => op.UseSqlServer("name=conn"));  // Local instance MySQL83
 
 builder.Services.AddAutoMapper(typeof(Program));
+
+builder.Services.AddScoped<ICategoriaRepositorio, CategoriaRepositorio>();
+//builder.Services.AddScoped<IOrdenRepositorio, OrdenRepositorio>();
 
 //-----------------------------------------------------------------------------------------------------------------
 //Construccion de la aplicacion
