@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace TiendaAVritmica.BD.Data.Entity
 {
-    [Index(nameof(Cantidad), Name = "CarritoProducto_UQ", IsUnique = true)]
+    [Index(nameof(CarritoId), nameof(ProductoId), Name = "CarritoProducto_UQ", IsUnique = true)]
     public class CarritoProducto : EntityBase
     {
         [Required(ErrorMessage = "El carrito es obligatoria")]
@@ -24,6 +24,8 @@ namespace TiendaAVritmica.BD.Data.Entity
         public int Cantidad { get; set; }
 
         [Required(ErrorMessage = "El precio unitario es obligatoria")]
+        [Precision(18, 2)] // 18 dígitos, 2 decimales
         public decimal PrecioUnitario { get; set; }
+
     }
 }

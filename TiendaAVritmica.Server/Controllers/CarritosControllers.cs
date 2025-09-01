@@ -9,14 +9,14 @@ using TiendaAVritmica.Shared.DTO;
 namespace TiendaAVritmica.Server.Controllers
 {
     [ApiController]
-    [Route("api/Categorias")]   
-    public class CategoriasControllers : ControllerBase
+    [Route("api/Carritos")]
+    public class CarritosControllers : ControllerBase
     {
         //private readonly Context context;
-        private readonly ICategoriaRepositorio repositorio;
+        private readonly ICarritoRepositorio repositorio;
         private readonly IMapper mapper;
 
-        public CategoriasControllers(ICategoriaRepositorio repositorio,
+        public CarritosControllers(ICarritoRepositorio repositorio,
                                      IMapper mapper)
         {
             //this.context = context;
@@ -24,52 +24,57 @@ namespace TiendaAVritmica.Server.Controllers
             this.mapper = mapper;
         }
 
-        // GET: api/Categorias
+        // GET: api/Carritos
         [HttpGet]
-        public async Task<ActionResult<List<Categoria>>> Get()
+        public async Task<ActionResult<List<Carrito>>> Get()
         {
             return await repositorio.Select();
-            //return await context.Categorias
+            //return await context.Carritos
             //                     .AsNoTracking()
             //                     .ToListAsync();
         }
 
-        // GET: api/Categorias/2
+        // GET: api/Carritos/2
         [HttpGet("{id:int}")]
-        public async Task<ActionResult<Categoria>> Get(int id)
+        public async Task<ActionResult<Carrito>> Get(int id)
         {
-            Categoria? Cat = await repositorio.SelectById(id);
-            //Categoria? cat = await context.Categorias
+            Carrito? Ca = await repositorio.SelectById(id);
+            //Carrito? Ca = await context.Carritos
             //              .FirstOrDefaultAsync(x => x.Id == id);
 
-            if (Cat == null)
+            if (Ca == null)
             {
                 return NotFound();
             }
 
-            return Cat;
+            return Ca;
         }
 
-        [HttpGet("existe/{id:int}")] //api/Categorias/existe/2
+        [HttpGet("existe/{id:int}")] //api/Carritos/existe/2
         public async Task<ActionResult<bool>> Existe(int id)
         {
             var existe = await repositorio.Existe(id);
             return existe;
         }
-
-        // POST: api/Categorias
+        
+        // POST: api/Carrito
         [HttpPost]
-        public async Task<ActionResult<int>> Post(CrearCategoriaDTO entidadDTO)
+        public async Task<ActionResult<int>> Post(CrearCarritoDTO entidadDTO)
         {
             try
             {
-                //Categoria entidad = new Categoria();
-                //entidad.Nombre = entidadDTO.Nombre;
-                //entidad.Descripcion = entidadDTO.Descripcion;
+                //Carrito entidad = new Carrito();
+                //entidad.FechaCreacion = entidadDTO.FechaCreacion;
+                //entidad.Estado = entidadDTO.Estado;
+                //entidad.FechaConfirmacion = entidadDTO.FechaConfirmacion;
+                //entidad.EstadoPago = entidadDTO.EstadoPago;
+                //entidad.MontoTotal = entidadDTO.MontoTotal;
+                //entidad.Saldo = entidadDTO.Saldo;
+                //entidad.DireccionEnvio = entidadDTO.DireccionEnvio;
 
-                Categoria entidad = mapper.Map<Categoria>(entidadDTO);
+                Carrito entidad = mapper.Map<Carrito>(entidadDTO);
                 return await repositorio.Insert(entidad);
-                //context.Categorias.Add(entidad);
+                //context.Carritos.Add(entidad);
                 //await context.SaveChangesAsync();
                 //return entidad.Id;
             }
@@ -80,32 +85,38 @@ namespace TiendaAVritmica.Server.Controllers
             }
         }
 
-        // PUT: api/Categorias/2
+        // PUT: api/Carritos/2
         [HttpPut("{id}")]
-        public async Task<ActionResult> Put(int id, [FromBody] Categoria entidad)
+        public async Task<ActionResult> Put(int id, [FromBody] Carrito entidad)
         {
             if (id != entidad.Id)
             {
                 return BadRequest("Datos incorrrectos");
             }
-            var Cat = await repositorio.SelectById(id);
-            //var Cat = await context.Categorias
+            var Ca = await repositorio.SelectById(id);
+            //var Ca = await context.Carritos
             //              .Where(e => e.Id == id)
             //              .FirstOrDefaultAsync();
 
-            if (Cat == null)
+            if (Ca == null)
             {
-                return NotFound("No existe la categoria buscada.");
+                return NotFound("No existe el carrito buscado.");
             }
 
-            Cat.Nombre=entidad.Nombre;
-            Cat.Descripcion = entidad.Descripcion;
-            Cat.Activo = entidad.Activo;
+            Ca.UsuarioId = entidad.UsuarioId;
+            Ca.FechaCreacion = entidad.FechaCreacion;
+            Ca.Estado = entidad.Estado;
+            Ca.FechaConfirmacion = entidad.FechaConfirmacion;
+            Ca.EstadoPago = entidad.EstadoPago;
+            Ca.MontoTotal = entidad.MontoTotal;
+            Ca.Saldo = entidad.Saldo;
+            Ca.DireccionEnvio = entidad.DireccionEnvio;
+            Ca.Activo = entidad.Activo;
 
             try
             {
-                await repositorio.Update(id, Cat);
-                //context.Categorias.Update(Cat);
+                await repositorio.Update(id, Ca);
+                //context.Carritos.Update(Ca);
                 //await context.SaveChangesAsync();
                 return Ok();
             }
@@ -115,21 +126,21 @@ namespace TiendaAVritmica.Server.Controllers
             }
         }
 
-        // DELETE: api/Categorias/2
+        // DELETE: api/Carritos/2
         [HttpDelete("{id:int}")]
         public async Task<ActionResult> Delete(int id)
         {
             var existe = await repositorio.Existe(id);
-            //var existe = await context.Categorias.AnyAsync(x => x.Id==id);
+            //var existe = await context.Carritos.AnyAsync(x => x.Id == id);
             if (!existe)
             {
-                return NotFound($"La categoria {id} no existe.");
+                return NotFound($"El carrito {id} no existe.");
             }
 
-            //Categoria EntidadABorrar= new Categoria();
+            //Carrito EntidadABorrar = new Carrito();
             //EntidadABorrar.Id = id;
 
-            //context.Remove( EntidadABorrar );
+            //context.Remove(EntidadABorrar);
             //await context.SaveChangesAsync();
             //return Ok();
             if (await repositorio.Delete(id))

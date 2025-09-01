@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace TiendaAVritmica.BD.Data.Entity
 {
-    [Index(nameof(Cantidad), Name = "CompraDetalle_UQ", IsUnique = true)]
+    [Index(nameof(CompraId), nameof(ProductoId), Name = "CompraDetalle_UQ", IsUnique = true)]
     public class CompraDetalle : EntityBase
     {
         // FK con Compra
@@ -25,9 +25,11 @@ namespace TiendaAVritmica.BD.Data.Entity
         public int Cantidad { get; set; }
 
         [Required(ErrorMessage = "El precio de compra es obligatorio")]
+        //[Precision(18, 2)] // 18 dígitos, 2 decimales
         public decimal PrecioCompra { get; set; }
 
         [Required(ErrorMessage = "El precio de venta actualizado es obligatorio")]
+        //[Precision(18, 2)] // 18 dígitos, 2 decimales
         public decimal PrecioVentaActualizado { get; set; }
     }
 }   

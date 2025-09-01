@@ -13,6 +13,12 @@ namespace TiendaAVritmica.Server.Repositorio
             this.context = context;
         }
 
+        public async Task<bool> Existe(int id)
+        {
+            var existe = await context.Set<E>()
+                             .AnyAsync(x => x.Id == id);
+            return existe;
+        }
         public async Task<List<E>> Select()
         {
             return await context.Set<E>().ToListAsync();

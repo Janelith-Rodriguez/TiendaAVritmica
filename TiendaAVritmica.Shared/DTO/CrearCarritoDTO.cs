@@ -1,21 +1,14 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TiendaAVritmica.BD.Data.Entity
+namespace TiendaAVritmica.Shared.DTO
 {
-    [Index(nameof(UsuarioId), nameof(FechaCreacion), Name = "Compra_UQ", IsUnique = true)]
-    public class Carrito : EntityBase
+    public class CrearCarritoDTO
     {
-        [Required(ErrorMessage = "El usuario es obligatorio")]
-        // FK
-        public int UsuarioId { get; set; }
-        public Usuario Usuario { get; set; }
-
         [Required(ErrorMessage = "La fecha  de creación es obligatoria")]
         public DateTime FechaCreacion { get; set; }
 
@@ -41,9 +34,5 @@ namespace TiendaAVritmica.BD.Data.Entity
         [Required(ErrorMessage = "La dirección de envio es obligatorio")]
         [MaxLength(50, ErrorMessage = "Máximo {1} caracteres.")]
         public string DireccionEnvio { get; set; }
-
-        // Relaciones
-        //public List<CarritoProducto> CarritoProductos { get; set; }
-        //public List<Pago> Pagos { get; set; }
     }
 }

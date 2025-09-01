@@ -9,20 +9,36 @@ namespace TiendaAVritmica.Server.Util
         public AutoMapperProfiles()
         {
             //CreateMap<CrearCategoriaDTO, Categoria>();
+
+            //Carrito
+            CreateMap<Carrito, CrearCarritoDTO>().ReverseMap();
+
+            //CarritoProducto
+            CreateMap<CarritoProducto, CrearCarritoProductoDTO>().ReverseMap();
+
             //Categoria
             CreateMap<Categoria, CrearCategoriaDTO>().ReverseMap();
-
-            //Producto
-            CreateMap<Producto, CrearProductoDTO>().ReverseMap();
-
-            //Usuario
-            CreateMap<Usuario, CrearUsuarioDTO>().ReverseMap();
 
             //Compra
             CreateMap<Compra, CrearCompraDTO>().ReverseMap();
 
             //CompraDetalle
             CreateMap<CompraDetalle, CrearCompraDetalleDTO>().ReverseMap();
+
+            //Consulta
+            CreateMap<Consulta, CrearConsultaDTO>().ReverseMap();
+
+            //Pago
+            CreateMap<Pago, CrearPagoDTO>().ReverseMap();
+
+            //Producto
+            CreateMap<Producto, CrearProductoDTO>().ReverseMap();
+
+            //StockMovimiento
+            CreateMap<StockMovimiento, CrearStockMovimientoDTO>().ReverseMap();
+
+            //Usuario
+            CreateMap<Usuario, CrearUsuarioDTO>().ReverseMap();
         }
     }
 }

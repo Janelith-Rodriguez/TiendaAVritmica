@@ -17,9 +17,9 @@ namespace TiendaAVritmica.BD.Data.Entity
         [MaxLength(150, ErrorMessage = "Maximo numero de caracteres{1}.")]
         public string Nombre { get; set; }
 
-        [Required(ErrorMessage = "La descripción del producto es obligatoria")]
+        //[Required(ErrorMessage = "La descripción del producto es obligatoria")]
         [MaxLength(200, ErrorMessage = "Maximo numero de caracteres{1}.")]
-        public string Descripcion { get; set; }
+        public string? Descripcion { get; set; }
 
         [Required(ErrorMessage = "El precio del producto es obligatorio")]
         //[Precision(18, 2)] // 18 dígitos, 2 decimales
@@ -39,8 +39,8 @@ namespace TiendaAVritmica.BD.Data.Entity
         public Categoria Categoria { get; set; }
 
         // Relaciones
-        //public List<Carrito_Producto> Carrito_Productos { get; set; }
-        //public List<Stock_Movimiento> Stock_Movimientos { get; set; }
+        public List<CarritoProducto> CarritoProductos { get; set; }
+        public List<StockMovimiento> StockMovimientos { get; set; }
         public List<CompraDetalle> CompraDetalles { get; set; }
     }
 }

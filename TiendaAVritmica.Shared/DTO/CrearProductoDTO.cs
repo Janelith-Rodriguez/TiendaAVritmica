@@ -12,6 +12,7 @@ namespace TiendaAVritmica.Shared.DTO
         [Required(ErrorMessage = "El nombre del producto es obligatoria")]
         [MaxLength(150, ErrorMessage = "Maximo numero de caracteres{1}.")]
         public string Nombre { get; set; }
+
         [Required(ErrorMessage = "La descripción del producto es obligatoria")]
         [MaxLength(200, ErrorMessage = "Maximo numero de caracteres{1}.")]
         public string Descripcion { get; set; }
@@ -29,8 +30,8 @@ namespace TiendaAVritmica.Shared.DTO
         public string ImagenUrl { get; set; }
 
         // FK
-        [Required(ErrorMessage = "La categoria es obligatoria")]
-        public int CategoriaId { get; set; }
+        //[Required(ErrorMessage = "La categoria es obligatoria")]
+        //public int CategoriaId { get; set; }
         //public Categoria Categoria { get; set; }
     }
 }

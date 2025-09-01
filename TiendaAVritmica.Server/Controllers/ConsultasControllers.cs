@@ -9,14 +9,14 @@ using TiendaAVritmica.Shared.DTO;
 namespace TiendaAVritmica.Server.Controllers
 {
     [ApiController]
-    [Route("api/Categorias")]   
-    public class CategoriasControllers : ControllerBase
+    [Route("api/Consultas")]
+    public class ConsultasControllers : ControllerBase
     {
         //private readonly Context context;
-        private readonly ICategoriaRepositorio repositorio;
+        private readonly IConsultaRepositorio repositorio;
         private readonly IMapper mapper;
 
-        public CategoriasControllers(ICategoriaRepositorio repositorio,
+        public ConsultasControllers(IConsultaRepositorio repositorio,
                                      IMapper mapper)
         {
             //this.context = context;
@@ -24,52 +24,54 @@ namespace TiendaAVritmica.Server.Controllers
             this.mapper = mapper;
         }
 
-        // GET: api/Categorias
+        // GET: api/Consultas
         [HttpGet]
-        public async Task<ActionResult<List<Categoria>>> Get()
+        public async Task<ActionResult<List<Consulta>>> Get()
         {
             return await repositorio.Select();
-            //return await context.Categorias
+            //return await context.Consultas
             //                     .AsNoTracking()
             //                     .ToListAsync();
         }
 
-        // GET: api/Categorias/2
+        // GET: api/Consultas/2
         [HttpGet("{id:int}")]
-        public async Task<ActionResult<Categoria>> Get(int id)
+        public async Task<ActionResult<Consulta>> Get(int id)
         {
-            Categoria? Cat = await repositorio.SelectById(id);
-            //Categoria? cat = await context.Categorias
+            Consulta? Con= await repositorio.SelectById(id);
+            //Consulta? Con = await context.Consultas
             //              .FirstOrDefaultAsync(x => x.Id == id);
 
-            if (Cat == null)
+            if (Con == null)
             {
                 return NotFound();
             }
 
-            return Cat;
+            return Con;
         }
 
-        [HttpGet("existe/{id:int}")] //api/Categorias/existe/2
+        [HttpGet("existe/{id:int}")] //api/Consultas/existe/2
         public async Task<ActionResult<bool>> Existe(int id)
         {
             var existe = await repositorio.Existe(id);
             return existe;
         }
 
-        // POST: api/Categorias
+        // POST: api/Consultas
         [HttpPost]
-        public async Task<ActionResult<int>> Post(CrearCategoriaDTO entidadDTO)
+        public async Task<ActionResult<int>> Post(CrearConsultaDTO entidadDTO)
         {
             try
             {
-                //Categoria entidad = new Categoria();
+                //Consulta entidad = new Consulta();
                 //entidad.Nombre = entidadDTO.Nombre;
-                //entidad.Descripcion = entidadDTO.Descripcion;
+                //entidad.Email = entidadDTO.Email;
+                //entidad.Mensaje = entidadDTO.Mensaje;
+                //entidad.FechaEnvio = entidadDTO.FechaEnvio;
 
-                Categoria entidad = mapper.Map<Categoria>(entidadDTO);
+                Consulta entidad = mapper.Map<Consulta>(entidadDTO);
                 return await repositorio.Insert(entidad);
-                //context.Categorias.Add(entidad);
+                //context.Consultas.Add(entidad);
                 //await context.SaveChangesAsync();
                 //return entidad.Id;
             }
@@ -80,34 +82,39 @@ namespace TiendaAVritmica.Server.Controllers
             }
         }
 
-        // PUT: api/Categorias/2
+        // PUT: api/Consultas/2
         [HttpPut("{id}")]
-        public async Task<ActionResult> Put(int id, [FromBody] Categoria entidad)
+        public async Task<ActionResult> Put(int id, [FromBody] Consulta entidad)
         {
             if (id != entidad.Id)
             {
                 return BadRequest("Datos incorrrectos");
             }
-            var Cat = await repositorio.SelectById(id);
-            //var Cat = await context.Categorias
+            var Con = await repositorio.SelectById(id);
+            //var Con = await context.Consultas
             //              .Where(e => e.Id == id)
             //              .FirstOrDefaultAsync();
 
-            if (Cat == null)
+            if (Con == null)
             {
-                return NotFound("No existe la categoria buscada.");
+                return NotFound("No existe la consulta buscada.");
             }
 
-            Cat.Nombre=entidad.Nombre;
-            Cat.Descripcion = entidad.Descripcion;
-            Cat.Activo = entidad.Activo;
+            Con.UsuarioId = entidad.UsuarioId;
+            Con.Nombre = entidad.Nombre;
+            Con.Email = entidad.Email;
+            Con.Mensaje = entidad.Mensaje;
+            Con.FechaEnvio = entidad.FechaEnvio;
+            Con.Activo = entidad.Activo;
 
             try
             {
-                await repositorio.Update(id, Cat);
-                //context.Categorias.Update(Cat);
-                //await context.SaveChangesAsync();
+                await repositorio.Update(id, Con);
                 return Ok();
+
+                //context.Consultas.Update(Con);
+                //await context.SaveChangesAsync();
+                //return Ok();
             }
             catch (Exception e)
             {
@@ -115,21 +122,21 @@ namespace TiendaAVritmica.Server.Controllers
             }
         }
 
-        // DELETE: api/Categorias/2
+        // DELETE: api/Consultas/2
         [HttpDelete("{id:int}")]
         public async Task<ActionResult> Delete(int id)
         {
             var existe = await repositorio.Existe(id);
-            //var existe = await context.Categorias.AnyAsync(x => x.Id==id);
+           // var existe = await context.Consultas.AnyAsync(x => x.Id == id);
             if (!existe)
             {
-                return NotFound($"La categoria {id} no existe.");
+                return NotFound($"La consulta {id} no existe.");
             }
 
-            //Categoria EntidadABorrar= new Categoria();
+            //Consulta EntidadABorrar = new Consulta();
             //EntidadABorrar.Id = id;
 
-            //context.Remove( EntidadABorrar );
+            //context.Remove(EntidadABorrar);
             //await context.SaveChangesAsync();
             //return Ok();
             if (await repositorio.Delete(id))

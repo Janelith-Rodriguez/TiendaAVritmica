@@ -19,8 +19,16 @@ builder.Services.AddDbContext<Context>(op => op.UseSqlServer("name=conn"));  // 
 
 builder.Services.AddAutoMapper(typeof(Program));
 
+builder.Services.AddScoped<ICarritoRepositorio, CarritoRepositorio>();
+builder.Services.AddScoped<ICarritoProductoRepositorio, CarritoProductoRepositorio>();
 builder.Services.AddScoped<ICategoriaRepositorio, CategoriaRepositorio>();
-//builder.Services.AddScoped<IOrdenRepositorio, OrdenRepositorio>();
+builder.Services.AddScoped<ICompraRepositorio, CompraRepositorio>();
+builder.Services.AddScoped<ICompraDetalleRepositorio, CompraDetalleRepositorio>();
+builder.Services.AddScoped<IConsultaRepositorio, ConsultaRepositorio>();
+builder.Services.AddScoped<IPagoRepositorio, PagoRepositorio>();
+builder.Services.AddScoped<IProductoRepositorio, ProductoRepositorio>();
+builder.Services.AddScoped<IStockMovimientoRepositorio, StockMovimientoRepositorio>();
+builder.Services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
 
 //-----------------------------------------------------------------------------------------------------------------
 //Construccion de la aplicacion

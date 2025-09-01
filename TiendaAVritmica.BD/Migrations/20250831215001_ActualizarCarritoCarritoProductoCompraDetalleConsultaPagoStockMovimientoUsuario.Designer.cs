@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TiendaAVritmica.BD.Data;
 
@@ -11,9 +12,11 @@ using TiendaAVritmica.BD.Data;
 namespace TiendaAVritmica.BD.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20250831215001_ActualizarCarritoCarritoProductoCompraDetalleConsultaPagoStockMovimientoUsuario")]
+    partial class ActualizarCarritoCarritoProductoCompraDetalleConsultaPagoStockMovimientoUsuario
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -119,6 +122,7 @@ namespace TiendaAVritmica.BD.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Descripcion")
+                        .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
@@ -302,6 +306,7 @@ namespace TiendaAVritmica.BD.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Descripcion")
+                        .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
@@ -320,6 +325,7 @@ namespace TiendaAVritmica.BD.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("Stock")
+                        .HasMaxLength(15)
                         .HasColumnType("int");
 
                     b.HasKey("Id");

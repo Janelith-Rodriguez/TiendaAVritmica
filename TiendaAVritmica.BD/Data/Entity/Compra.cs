@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace TiendaAVritmica.BD.Data.Entity
 {
-    [Index(nameof(Fecha), Name = "Compra_UQ", IsUnique = true)]
+    [Index(nameof(UsuarioId), nameof(Fecha), Name = "Compra_UQ", IsUnique = true)]
     public class Compra : EntityBase
     {
         // FK con Usuario

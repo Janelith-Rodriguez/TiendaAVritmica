@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace TiendaAVritmica.BD.Data.Entity
 {
-    [Index(nameof(Email), Name = "Usuario_UQ", IsUnique = true)]
+    [Index(nameof(Nombre), nameof(Apellido), Name = "Usuario_UQ", IsUnique = true)]
     public class Usuario : EntityBase
     {
         [Required(ErrorMessage = "El nombre del usuario es obligatorio")]
@@ -37,11 +37,12 @@ namespace TiendaAVritmica.BD.Data.Entity
         public string Direccion { get; set; }
 
         [Required(ErrorMessage = "El tipo de usuario es obligatorio")]
+        [MaxLength(20, ErrorMessage = "Maximo numero de caracteres{1}.")]
         public string TipoUsuario { get; set; }
 
         // Relación: un usuario puede tener muchas compras
         public List<Compra> Compras { get; set; }
-        //public List<Carrito> Carritos { get; set; }
-        //public List<Consulta> Consultas { get; set; }
+        public List<Carrito> Carritos { get; set; }
+        public List<Consulta> Consultas { get; set; }
     }
 }

@@ -1,21 +1,14 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TiendaAVritmica.BD.Data.Entity
+namespace TiendaAVritmica.Shared.DTO
 {
-    [Index(nameof(CarritoId), nameof(FechaPago), Name = "Pago_UQ", IsUnique = true)]
-    public class Pago : EntityBase
+    public class CrearPagoDTO
     {
-        // FK
-        [Required(ErrorMessage = "El carrito es obligatoria")]
-        public int CarritoId { get; set; }
-        public Carrito Carrito { get; set; }
-
         [Required(ErrorMessage = "La fecha de pago es obligatorio")]
         public DateTime FechaPago { get; set; }
 
@@ -24,7 +17,6 @@ namespace TiendaAVritmica.BD.Data.Entity
         public string MetodoPago { get; set; }
 
         [Required(ErrorMessage = "El monto pagado es obligatorio")]
-        [Precision(18, 2)] // 18 dígitos, 2 decimales
         public decimal MontoPagado { get; set; }
 
         [Required(ErrorMessage = "El estado del pago es obligatorio")]
@@ -32,7 +24,6 @@ namespace TiendaAVritmica.BD.Data.Entity
         public string EstadoPago { get; set; }
 
         [Required(ErrorMessage = "El saldo es obligatorio")]
-        [Precision(18, 2)] // 18 dígitos, 2 decimales
         //[MaxLength(100, ErrorMessage = "Máximo {1} caracteres.")]
         public decimal Saldo { get; set; }
 
