@@ -1,0 +1,105 @@
+﻿<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="">TiendaAVritmica.Client</a>
+        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</div>
+
+<div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
+    <nav class="flex-column">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="counter">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Counter
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="weather">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weather
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="api/Carritos">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Carrito
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="api/CarritoProductos">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> CarritoProducto
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="api/Categorias">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Categoria
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="api/Compras">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Compra
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="api/CompraDetalles">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> CompraDetalle
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="api/Consultas">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Consulta
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="api/Pagos">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Pago
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="api/Productos">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Producto
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="api/StockMovimientos">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> StockMovimiento
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="api/Usuarios">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Usuario
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="https://localhost:7236/swagger" target="_blank">
+                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Swagger
+            </NavLink>
+        </div>
+    </nav>
+</div>
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+}

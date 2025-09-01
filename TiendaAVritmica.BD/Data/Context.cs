@@ -41,38 +41,38 @@ namespace TiendaAVritmica.BD.Data
             base.OnModelCreating(modelBuilder);
 
             // Opcional: definir precisión de Precio
-            modelBuilder.Entity<Producto>()
-                .Property(p => p.Precio)
-                .HasPrecision(18, 2);
+            //modelBuilder.Entity<Producto>()
+            //    .Property(p => p.Precio)
+            //    .HasPrecision(18, 2);
 
 //===============================================================================
-            modelBuilder.Entity<CompraDetalle>()
-                .Property(d => d.PrecioCompra)
-                .HasPrecision(18, 2);
-            modelBuilder.Entity<CompraDetalle>()
-               .Property(d => d.PrecioVentaActualizado)
-               .HasPrecision(18, 2);
+            //modelBuilder.Entity<CompraDetalle>()
+            //    .Property(d => d.PrecioCompra)
+            //    .HasPrecision(18, 2);
+            //modelBuilder.Entity<CompraDetalle>()
+            //   .Property(d => d.PrecioVentaActualizado)
+            //   .HasPrecision(18, 2);
 
 //===============================================================================
-            modelBuilder.Entity<CarritoProducto>()
-               .Property(d => d.PrecioUnitario)
-               .HasPrecision(18, 2);
+            //modelBuilder.Entity<CarritoProducto>()
+            //   .Property(d => d.PrecioUnitario)
+            //   .HasPrecision(18, 2);
 
 //===============================================================================
-            modelBuilder.Entity<Carrito>()
-               .Property(d => d.MontoTotal)
-               .HasPrecision(18, 2);
-            modelBuilder.Entity<Carrito>()
-               .Property(d => d.Saldo)
-               .HasPrecision(18, 2);
+            //modelBuilder.Entity<Carrito>()
+            //   .Property(d => d.MontoTotal)
+            //   .HasPrecision(18, 2);
+            //modelBuilder.Entity<Carrito>()
+            //   .Property(d => d.Saldo)
+            //   .HasPrecision(18, 2);
 
             //===============================================================================
-            modelBuilder.Entity<Pago>()
-               .Property(d => d.MontoPagado)
-               .HasPrecision(18, 2);
-            modelBuilder.Entity<Pago>()
-               .Property(d => d.Saldo)
-               .HasPrecision(18, 2);
+            //modelBuilder.Entity<Pago>()
+            //   .Property(d => d.MontoPagado)
+            //   .HasPrecision(18, 2);
+            //modelBuilder.Entity<Pago>()
+            //   .Property(d => d.Saldo)
+            //   .HasPrecision(18, 2);
 
             //// ======================
             //// USUARIOS
