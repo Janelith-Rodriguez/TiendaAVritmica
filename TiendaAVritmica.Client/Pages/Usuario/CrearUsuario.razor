@@ -1,0 +1,47 @@
+﻿@page "/api/usuarios/crear"
+@inject IHttpServicio http
+@inject NavigationManager nav
+
+<h3>Crear Usuario</h3>
+
+<EditForm Model="usuario" OnValidSubmit="Crear">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="mb-3">
+        <label>Nombre:</label>
+        <InputText class="form-control" @bind-Value="usuario.Nombre" />
+    </div>
+
+    <div class="mb-3">
+        <label>Email:</label>
+        <InputText class="form-control" @bind-Value="usuario.Email" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Guardar</button>
+</EditForm>
+
+@code {
+    private UsuarioDTO usuario = new();
+
+    private async Task Crear()
+    {
+        var respuesta = await http.Post("https://localhost:7236/api/Usuarios", usuario);
+
+        if (!respuesta.Error)
+        {
+            nav.NavigateTo("/usuarios");
+        }
+        else
+        {
+            var error = await respuesta.ObtenerError();
+            Console.WriteLine($"Error: {error}");
+        }
+    }
+
+    public class UsuarioDTO
+    {
+        public string Nombre { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
+    }
+}

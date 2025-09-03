@@ -1,5 +1,4 @@
-﻿
-namespace TiendaAVritmica.Client.Servivios
+﻿namespace TiendaAVritmica.Client.Servivios
 {
     public interface IHttpServicio
     {

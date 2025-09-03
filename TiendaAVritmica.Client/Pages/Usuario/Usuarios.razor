@@ -1,0 +1,61 @@
+﻿@page "/api/usuarios"
+@inject IHttpServicio http
+
+<h3>Lista de Usuarios</h3>
+@if (usuarios is null)
+{
+    <p><em>Cargando...</em></p>
+}
+else if (usuarios.Count == 0)
+{
+    <p>No hay usuarios registrados.</p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var usuario in usuarios)
+            {
+                <tr>
+                    <td>@usuario.Id</td>
+                    <td>@usuario.Nombre</td>
+                    <td>@usuario.Email</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<UsuarioDTO>? usuarios;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var respuesta = await http.Get<List<UsuarioDTO>>("https://localhost:7236/api/Usuarios");
+
+        if (!respuesta.Error)
+        {
+            usuarios = respuesta.Respuesta!;
+        }
+        else
+        {
+            var error = await respuesta.ObtenerError();
+            Console.WriteLine($"Error al obtener usuarios: {error}");
+        }
+    }
+
+    // Un DTO sencillo para esta página
+    public class UsuarioDTO
+    {
+        public int Id { get; set; }
+        public string Nombre { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
+    }
+}
